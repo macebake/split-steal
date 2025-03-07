@@ -1,5 +1,4 @@
 import os
-from game.llms.base import BaseLLMClient
 from dotenv import load_dotenv
 from openai import OpenAI
 
@@ -10,7 +9,7 @@ class OpenAIClient():
         super().__init__()
         self.client = self.instantiate_client()
         self.model = model
-    
+
     def instantiate_client(self):
         return OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
@@ -21,6 +20,6 @@ class OpenAIClient():
         )
         message_text = response.choices[0].message.content
         return message_text
-    
+
     def vote(self, messages):
         return self.chat(messages)

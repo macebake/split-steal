@@ -16,7 +16,7 @@ class Logger:
         
         :param log_entry: A dictionary representing the log event.
         """
-        with open(self.log_file, 'a') as f:
+        with open(self.log_file, 'a', encoding="utf-8") as f:
             f.write(json.dumps(log_entry) + "\n")
 
     def log_event(self, event, extra_data=None):

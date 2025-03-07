@@ -12,13 +12,13 @@ class ChatManager:
         :param message: The content of the message.
         """
         entry = {"sender": sender, "message": message}
-        self.history.append(entry)        
+        self.history.append(entry)
 
     def get_history(self):
         """
         Returns the complete conversation history as a list of dictionaries.
         Each dictionary contains 'sender' and 'message' keys.
-        
+
         :return: List of all broadcasted messages.
         """
 

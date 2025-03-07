@@ -1,8 +1,7 @@
-import requests
 import os
 import json
+import requests
 from dotenv import load_dotenv
-from game.llms.base import BaseLLMClient
 
 load_dotenv()
 
@@ -29,14 +28,20 @@ class FireworksClient():
             "Content-Type": "application/json",
             "Authorization": f"Bearer {os.getenv('FIREWORKS_API_KEY')}"
         }
-        response = requests.request("POST", url, headers=headers, data=json.dumps(payload))
+        response = requests.request(
+            "POST",
+            url,
+            headers=headers,
+            data=json.dumps(payload),
+            timeout=30,
+        )
         text = json.loads(response.text)
         message = text['choices'][0]['message']['content']
 
         if "deepseek-r1" in self.model:
             return self.remove_thinking(message)
-        else:
-            return message
+
+        return message
 
     def vote(self, messages):
         return self.chat(messages)
