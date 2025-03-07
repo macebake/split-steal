@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
 
 from game.llm_client import LLMClient
-from game.prompts import SYSTEM_PROMPT, TIME_TO_VOTE
+from game.prompts import BASE_SYSTEM_PROMPT, TIME_TO_VOTE
 
 load_dotenv()
 
@@ -13,7 +13,7 @@ class LLMPlayer:
         self.client = LLMClient(model)
 
     def initialize_game(self):
-        self.conversation.append({"role": "user", "content": SYSTEM_PROMPT})
+        self.conversation.append({"role": "user", "content": BASE_SYSTEM_PROMPT})
 
     def get_chat_message(self, global_chat_history):
         # Build context messages from the global chat history.
